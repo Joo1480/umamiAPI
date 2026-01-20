@@ -45,5 +45,28 @@ namespace umami.API.Controllers
             };
 
         }
+        [HttpPost("login")]
+        public async Task<ActionResult<UserToken>> Selecionar(LoginModel loginModel)
+        {
+            var existe = await _authenticateService.UserExists(loginModel.Email);
+            if (!existe)
+            {
+                return Unauthorized("Usuário não existe.");
+            }
+            var result = await _authenticateService.AuthenticateAsync(loginModel.Email, loginModel.Password);
+            if (!result)
+            {
+                return Unauthorized("Usuário pu senha errado.");
+            }
+
+            var usuario = await _authenticateService.GetUserByEmail(loginModel.Email);
+
+            var token = _authenticateService.GenerateToken(usuario.ID, usuario.EMAIL);
+
+            return new UserToken
+            {
+                Token = token
+            };
+        }
     }
 }

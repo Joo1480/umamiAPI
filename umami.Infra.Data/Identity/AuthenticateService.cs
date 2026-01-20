@@ -69,7 +69,10 @@ namespace umami.Infra.Data.Identity
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
-
+        public async Task<USUARIO> GetUserByEmail(string email)
+        {
+            return await _context.USUARIO.Where(x => x.EMAIL.ToLower() == email.ToLower()).FirstOrDefaultAsync();
+        }
         public async Task<bool> UserExists(string email)
         {
             var usuario = await _context.USUARIO.Where(x => x.EMAIL.ToLower() == email.ToLower()).FirstOrDefaultAsync();
