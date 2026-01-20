@@ -1,6 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,14 +11,13 @@ using System.Text;
 using System.Threading.Tasks;
 using umami.Application.Interfaces;
 using umami.Application.Mappings;
+using umami.Application.Mappings;
 using umami.Application.Services;
+using umami.Domain.Account;
 using umami.Domain.Interfaces;
 using umami.Infra.Data.Context;
+using umami.Infra.Data.Identity;
 using umami.Infra.Data.Repositories;
-using umami.Application.Mappings;
-using AutoMapper;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
 
 namespace umami.Infra.Ioc
 {
@@ -54,9 +56,12 @@ namespace umami.Infra.Ioc
 
             //Repositories
             services.AddScoped<ITipoUsuarioRepository, TipoUsuarioRepository>();
+            services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 
             //Services
             services.AddScoped<ITipoUsuarioService, TipoUsuarioService>();
+            services.AddScoped<IUsuarioService, UsuarioService>();
+            services.AddScoped<IAuthenticate, AuthenticateService>();
 
 
             return services;

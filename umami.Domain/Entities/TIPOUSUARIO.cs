@@ -11,6 +11,7 @@ namespace umami.Domain.Entities
     {
         public int ID { get; private set; }
         public string? DESCRICAO { get; private set; }
+        public ICollection<USUARIO> USUARIO { get; set; } 
         protected TIPOUSUARIO() { }
         public TIPOUSUARIO(int id, string descricao)
         {

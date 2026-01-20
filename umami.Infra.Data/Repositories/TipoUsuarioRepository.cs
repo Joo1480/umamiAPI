@@ -46,9 +46,9 @@ namespace umami.Infra.Data.Repositories
             return await _context.TIPOUSUARIO.AsNoTracking().FirstOrDefaultAsync(x => x.ID == id);
         }
 
-        public Task<IEnumerable<TIPOUSUARIO>> SelecionarTodosAsync(int id)
+        public async Task<IEnumerable<TIPOUSUARIO>> SelecionarTodosAsync()
         {
-            throw new NotImplementedException();
+            return await _context.TIPOUSUARIO.ToListAsync();
         }
     }
 }

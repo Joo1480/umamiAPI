@@ -12,6 +12,7 @@ namespace umami.Infra.Data.Context
     {
         public ApplicationDbContext(DbContextOptions options): base(options) { }
         public DbSet<TIPOUSUARIO> TIPOUSUARIO {  get; set; }
+        public DbSet<USUARIO> USUARIO {  get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

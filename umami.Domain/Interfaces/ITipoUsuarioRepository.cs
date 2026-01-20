@@ -13,6 +13,6 @@ namespace umami.Domain.Interfaces
         Task<TIPOUSUARIO> Alterar(TIPOUSUARIO model);
         Task<TIPOUSUARIO> Excluir(int id);
         Task<TIPOUSUARIO> SelecionarAsync(int id);
-        Task<IEnumerable<TIPOUSUARIO>> SelecionarTodosAsync(int id);
+        Task<IEnumerable<TIPOUSUARIO>> SelecionarTodosAsync();
     }
 }

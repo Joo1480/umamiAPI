@@ -15,6 +15,7 @@ namespace umami.Application.Mappings
         public DomainToDTOMappingProfile()
         {
             CreateMap<TIPOUSUARIO, TipoUsuarioDTO>().ReverseMap();
+            CreateMap<USUARIO, UsuarioDTO>().ReverseMap();
         }
     }
 }
