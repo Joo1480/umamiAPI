@@ -9,9 +9,8 @@ using System.Threading.Tasks;
 
 namespace umami.Application.DTOs
 {
-    public class UsuarioDTO
+    public class UsuarioPostDTO
     {
-        public int ID { get; set; }
         [Required(ErrorMessage = "O nome é obrigatório")]
         [MaxLength(250, ErrorMessage = "O nome não pode ter mais de 250 caracteres")]
         public string NOME { get; set; }
@@ -29,8 +28,6 @@ namespace umami.Application.DTOs
         public byte[]? PasswordHash { get; private set; }
         [NotMapped]
         public byte[]? PasswordSalt { get; private set; }
-        [JsonIgnore]
         public int? SEQTIPOUSUARIO { get; set; }
-        public TipoUsuarioDTO tipoUsuarioDTO { get; set; }
     }
 }

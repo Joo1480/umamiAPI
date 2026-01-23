@@ -45,9 +45,10 @@ namespace umami.Application.Services
             return _mapper.Map<TipoUsuarioDTO>(tipoUsu);
         }
 
-        public Task<IEnumerable<TipoUsuarioDTO>> SelecionarTodosAsync()
+        public async Task<IEnumerable<TipoUsuarioDTO>> SelecionarTodosAsync()
         {
-            throw new NotImplementedException();
+            var tipoUsuarios = await _repository.SelecionarTodosAsync();
+            return _mapper.Map<IEnumerable<TipoUsuarioDTO>>(tipoUsuarios);
         }
     }
 }

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using umami.Application.DTOs;
 using umami.Application.Interfaces;
+using umami.Infra.Ioc;
 
 namespace umami.API.Controllers
 {
@@ -20,8 +21,8 @@ namespace umami.API.Controllers
         [HttpPost("register")]
         public async Task<ActionResult> Incluir(TipoUsuarioDTO modelDTO)
         {
-            var userid = int.Parse(User.FindFirst("id").Value);
-            var usuario = await _usuarioService.SelecionarAsync(userid);
+            var userId = User.Getid();
+            var usuario = await _usuarioService.SelecionarAsync(userId);
 
             if (usuario.SEQTIPOUSUARIO != 1)
             {
@@ -37,8 +38,8 @@ namespace umami.API.Controllers
         [HttpPut]
         public async Task<ActionResult> Alterar(TipoUsuarioDTO modelDTO)
         {
-            var userid = int.Parse(User.FindFirst("id").Value);
-            var usuario = await _usuarioService.SelecionarAsync(userid);
+            var userId = User.Getid();
+            var usuario = await _usuarioService.SelecionarAsync(userId);
 
             if (usuario.SEQTIPOUSUARIO != 1)
             {
@@ -54,8 +55,8 @@ namespace umami.API.Controllers
         [HttpDelete]
         public async Task<ActionResult> Excluir(int id)
         {
-            var userid = int.Parse(User.FindFirst("id").Value);
-            var usuario = await _usuarioService.SelecionarAsync(userid);
+            var userId = User.Getid();
+            var usuario = await _usuarioService.SelecionarAsync(userId);
 
             if (usuario.SEQTIPOUSUARIO != 1)
             {
@@ -77,6 +78,12 @@ namespace umami.API.Controllers
             {
                 return NotFound("Tipo de Usuário não encontrado");
             }
+            return Ok(modelDTO);
+        }
+        [HttpGet]
+        public async Task<ActionResult> SelecionarTodos()
+        {
+            var modelDTO = await _tipoUsuService.SelecionarTodosAsync();
             return Ok(modelDTO);
         }
     }

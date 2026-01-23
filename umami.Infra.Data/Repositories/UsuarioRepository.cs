@@ -48,7 +48,7 @@ namespace umami.Infra.Data.Repositories
 
         public async Task<IEnumerable<USUARIO>> SelecionarTodosAsync()
         {
-            return await _context.USUARIO.ToListAsync();
+            return await _context.USUARIO.Include(x => x.TIPOUSUARIO).ToListAsync();
         }
     }
 }

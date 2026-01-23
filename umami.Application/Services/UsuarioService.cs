@@ -33,14 +33,14 @@ namespace umami.Application.Services
             var usuario = await _repository.Excluir(id);
             return _mapper.Map<UsuarioDTO>(usuario);
         }
-        public async Task<UsuarioDTO> Incluir(UsuarioDTO modelDTO)
+        public async Task<UsuarioDTO> Incluir(UsuarioPostDTO modelPostDTO)
         {
-            var usuario = _mapper.Map<USUARIO>(modelDTO);
+            var usuario = _mapper.Map<USUARIO>(modelPostDTO);
 
-            if (modelDTO.Password != null)
+            if (modelPostDTO.Password != null)
             {
                 using var hmac = new HMACSHA512();
-                byte[] passwordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(modelDTO.Password));
+                byte[] passwordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(modelPostDTO.Password));
                 byte[] passwordSalt = hmac.Key;
 
                 usuario.AlterarSenha(passwordHash, passwordSalt);

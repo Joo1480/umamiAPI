@@ -10,7 +10,7 @@ namespace umami.Application.Interfaces
 {
     public  interface IUsuarioService
     {
-        Task<UsuarioDTO> Incluir(UsuarioDTO modelDTO);
+        Task<UsuarioDTO> Incluir(UsuarioPostDTO modelPostDTO);
         Task<UsuarioDTO> Alterar(UsuarioDTO modelDTO);
         Task<UsuarioDTO> Excluir(int id);
         Task<UsuarioDTO> SelecionarAsync(int id);

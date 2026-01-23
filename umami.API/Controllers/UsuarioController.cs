@@ -19,7 +19,7 @@ namespace umami.API.Controllers
             _usuarioService = usuarioService;
         }
         [HttpPost("register")]
-        public async Task<ActionResult<UserToken>> Incluir(UsuarioDTO usuarioDTO)
+        public async Task<ActionResult<UserToken>> Incluir(UsuarioPostDTO usuarioDTO)
         {
             if (usuarioDTO == null)
             {
@@ -67,6 +67,12 @@ namespace umami.API.Controllers
             {
                 Token = token
             };
+        }
+        [HttpGet]
+        public async Task<ActionResult> SelecionarTodos()
+        {
+            var modelDTO = await _usuarioService.SelecionarTodosAsync();
+            return Ok(modelDTO);
         }
     }
 }
