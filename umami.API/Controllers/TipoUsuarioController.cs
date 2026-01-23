@@ -11,13 +11,22 @@ namespace umami.API.Controllers
     public class TipoUsuarioController : Controller
     {
         private readonly ITipoUsuarioService _tipoUsuService;
-        public TipoUsuarioController(ITipoUsuarioService tipoUsuService)
+        private readonly IUsuarioService _usuarioService;
+        public TipoUsuarioController(ITipoUsuarioService tipoUsuService, IUsuarioService usuarioService)
         {
             _tipoUsuService = tipoUsuService;
+            _usuarioService = usuarioService;
         }
         [HttpPost("register")]
         public async Task<ActionResult> Incluir(TipoUsuarioDTO modelDTO)
         {
+            var userid = int.Parse(User.FindFirst("id").Value);
+            var usuario = await _usuarioService.SelecionarAsync(userid);
+
+            if (usuario.SEQTIPOUSUARIO != 1)
+            {
+                return Unauthorized("Você não tem permissão para incluir o Tipo de Usuário");
+            }
             var TipoUsuDTOIncluido = await _tipoUsuService.Incluir(modelDTO);
             if (TipoUsuDTOIncluido == null)
             {
@@ -28,6 +37,13 @@ namespace umami.API.Controllers
         [HttpPut]
         public async Task<ActionResult> Alterar(TipoUsuarioDTO modelDTO)
         {
+            var userid = int.Parse(User.FindFirst("id").Value);
+            var usuario = await _usuarioService.SelecionarAsync(userid);
+
+            if (usuario.SEQTIPOUSUARIO != 1)
+            {
+                return Unauthorized("Você não tem permissão para alterar o Tipo de Usuário");
+            }
             var tipoUsuDTOIncluido = await _tipoUsuService.Alterar(modelDTO);
             if (tipoUsuDTOIncluido == null)
             {
@@ -38,6 +54,14 @@ namespace umami.API.Controllers
         [HttpDelete]
         public async Task<ActionResult> Excluir(int id)
         {
+            var userid = int.Parse(User.FindFirst("id").Value);
+            var usuario = await _usuarioService.SelecionarAsync(userid);
+
+            if (usuario.SEQTIPOUSUARIO != 1)
+            {
+                return Unauthorized("Você não tem permissão para excluir o Tipo de Usuário");
+            }
+            
             var tipoUsuDTOExcluido = await _tipoUsuService.Excluir(id);
             if (tipoUsuDTOExcluido == null)
             {
