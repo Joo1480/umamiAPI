@@ -6,7 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using umami.Domain.Entities;
 using umami.Domain.Interfaces;
+using umami.Domain.Pagination;
 using umami.Infra.Data.Context;
+using umami.Infra.Data.Helpers;
 
 namespace umami.Infra.Data.Repositories
 {
@@ -46,9 +48,10 @@ namespace umami.Infra.Data.Repositories
             return await _context.TIPOUSUARIO.AsNoTracking().FirstOrDefaultAsync(x => x.ID == id);
         }
 
-        public async Task<IEnumerable<TIPOUSUARIO>> SelecionarTodosAsync()
+        public async Task<PagedList<TIPOUSUARIO>> SelecionarTodosAsync(int pageNumber, int pageSize)
         {
-            return await _context.TIPOUSUARIO.ToListAsync();
+            var query = _context.TIPOUSUARIO.AsQueryable();
+            return await PaginationHelper.CreateAsync(query, pageNumber, pageSize);
         }
     }
 }

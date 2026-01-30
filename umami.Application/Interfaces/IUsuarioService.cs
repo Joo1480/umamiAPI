@@ -14,6 +14,6 @@ namespace umami.Application.Interfaces
         Task<UsuarioDTO> Alterar(UsuarioDTO modelDTO);
         Task<UsuarioDTO> Excluir(int id);
         Task<UsuarioDTO> SelecionarAsync(int id);
-        Task<IEnumerable<UsuarioDTO>> SelecionarTodosAsync();
+        Task<IEnumerable<UsuarioPostDTO>> SelecionarTodosAsync();
     }
 }

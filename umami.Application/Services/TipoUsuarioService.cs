@@ -8,6 +8,7 @@ using umami.Application.DTOs;
 using umami.Application.Interfaces;
 using umami.Domain.Entities;
 using umami.Domain.Interfaces;
+using umami.Domain.Pagination;
 
 namespace umami.Application.Services
 {
@@ -45,10 +46,12 @@ namespace umami.Application.Services
             return _mapper.Map<TipoUsuarioDTO>(tipoUsu);
         }
 
-        public async Task<IEnumerable<TipoUsuarioDTO>> SelecionarTodosAsync()
+        public async Task<PagedList<TipoUsuarioDTO>> SelecionarTodosAsync(int pageNumber, int pageSize)
         {
-            var tipoUsuarios = await _repository.SelecionarTodosAsync();
-            return _mapper.Map<IEnumerable<TipoUsuarioDTO>>(tipoUsuarios);
+            var tipoUsuarios = await _repository.SelecionarTodosAsync(pageNumber, pageSize);
+            var tipoUsuariosDTO = _mapper.Map<IEnumerable<TipoUsuarioDTO>>(tipoUsuarios);
+
+            return new PagedList<TipoUsuarioDTO>(tipoUsuariosDTO, pageNumber, pageSize, tipoUsuarios.TotalCount);
         }
     }
 }

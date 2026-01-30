@@ -1,7 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using umami.API.Extensions;
+using umami.API.Models;
 using umami.Application.DTOs;
 using umami.Application.Interfaces;
+using umami.Infra.Data.Helpers;
 using umami.Infra.Ioc;
 
 namespace umami.API.Controllers
@@ -41,7 +44,7 @@ namespace umami.API.Controllers
             var userId = User.Getid();
             var usuario = await _usuarioService.SelecionarAsync(userId);
 
-            if (usuario.SEQTIPOUSUARIO != 1)
+            if (usuario.SEQTIPOUSUARIO != 2)
             {
                 return Unauthorized("Você não tem permissão para alterar o Tipo de Usuário");
             }
@@ -81,9 +84,11 @@ namespace umami.API.Controllers
             return Ok(modelDTO);
         }
         [HttpGet]
-        public async Task<ActionResult> SelecionarTodos()
+        public async Task<ActionResult> SelecionarTodos([FromQuery]PaginationParams paginationParams)
         {
-            var modelDTO = await _tipoUsuService.SelecionarTodosAsync();
+            var modelDTO = await _tipoUsuService.SelecionarTodosAsync(paginationParams.PageNumber, paginationParams.PageSize);
+
+            Response.AddPaginationHeader(new PaginationHeader(modelDTO.CurrentPage, modelDTO.PageSize, modelDTO.TotalCount, modelDTO.TotalPages));
             return Ok(modelDTO);
         }
     }

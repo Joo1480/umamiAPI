@@ -56,10 +56,10 @@ namespace umami.Application.Services
             return _mapper.Map<UsuarioDTO>(usuario);
         }
 
-        public async Task<IEnumerable<UsuarioDTO>> SelecionarTodosAsync()
+        public async Task<IEnumerable<UsuarioPostDTO>> SelecionarTodosAsync()
         {
             var usuarios = await _repository.SelecionarTodosAsync();
-            return _mapper.Map<IEnumerable<UsuarioDTO>>(usuarios);
+            return _mapper.Map<IEnumerable<UsuarioPostDTO>>(usuarios);
         }
     }
 }

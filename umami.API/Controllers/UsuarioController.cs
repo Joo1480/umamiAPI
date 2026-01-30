@@ -56,7 +56,7 @@ namespace umami.API.Controllers
             var result = await _authenticateService.AuthenticateAsync(loginModel.Email, loginModel.Password);
             if (!result)
             {
-                return Unauthorized("Usuário pu senha errado.");
+                return Unauthorized("Usuário ou senha errado.");
             }
 
             var usuario = await _authenticateService.GetUserByEmail(loginModel.Email);

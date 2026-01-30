@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using umami.Domain.Entities;
+using umami.Domain.Pagination;
 
 namespace umami.Domain.Interfaces
 {
@@ -13,6 +14,6 @@ namespace umami.Domain.Interfaces
         Task<TIPOUSUARIO> Alterar(TIPOUSUARIO model);
         Task<TIPOUSUARIO> Excluir(int id);
         Task<TIPOUSUARIO> SelecionarAsync(int id);
-        Task<IEnumerable<TIPOUSUARIO>> SelecionarTodosAsync();
+        Task<PagedList<TIPOUSUARIO>> SelecionarTodosAsync(int pageNumber, int pageSize);
     }
 }
