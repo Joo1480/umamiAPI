@@ -17,6 +17,7 @@ namespace umami.Application.Mappings
             CreateMap<TIPOUSUARIO, TipoUsuarioDTO>().ReverseMap();
             CreateMap<UsuarioDTO,USUARIO>().ReverseMap().ForMember(d => d.tipoUsuarioDTO, o => o.MapFrom(x => x.TIPOUSUARIO));
             CreateMap<USUARIO, UsuarioPostDTO>().ReverseMap();
+            CreateMap<PRODUTO, ProdutoDTO>().ReverseMap();
 
         }
     }

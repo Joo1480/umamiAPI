@@ -32,12 +32,12 @@ namespace umami.Infra.Data.Repositories
 
         public async Task<USUARIO> Excluir(int id)
         {
-            var tipo = await _context.USUARIO.FindAsync(id);
-            if (tipo != null)
+            var usuario = await _context.USUARIO.FindAsync(id);
+            if (usuario != null)
             {
-                _context.USUARIO.Remove(tipo);
+                _context.USUARIO.Remove(usuario);
                 await _context.SaveChangesAsync();
-                return tipo;
+                return usuario;
             }
             return null;
         }
