@@ -21,6 +21,7 @@ namespace umami.Domain.Entities
         public byte[] PasswordHash { get; private set; }
         public byte[] PasswordSalt { get; private set; }
         public TIPOUSUARIO TIPOUSUARIO { get; set; }
+        public ICollection<VENDA> VENDAS { get; set; }
         protected USUARIO() { }
         public USUARIO(int id, string? nome, string? email, string? celular, string? cep, string? numendereco, string? complemento, string? cpf, int? seqtipousuario)
         {
