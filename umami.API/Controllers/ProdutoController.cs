@@ -89,5 +89,34 @@ namespace umami.API.Controllers
             Response.AddPaginationHeader(new PaginationHeader(modelDTO.CurrentPage, modelDTO.PageSize, modelDTO.TotalCount, modelDTO.TotalPages));
             return Ok(modelDTO);
         }
+        [HttpPatch("inativar/{id}")]
+        public async Task<ActionResult> Inativar(int id)
+        {
+            //var userId = User.Getid();
+            //var usuario = await _usuarioService.SelecionarAsync(userId);
+
+            //if (usuario.SEQTIPOUSUARIO != 1)
+            //{
+            //    return Unauthorized("Você não tem permissão para excluir o Tipo de Usuário");
+            //}
+
+            var produto = await _produtoService.SelecionarAsync(id);
+            if (produto == null)
+            {
+                return BadRequest("Produto não encontrado!");
+            }
+            else if (!produto.STATUS)
+            {
+                return Ok("Produto já se encontra inativado !");
+            }
+
+            produto.STATUS = false;
+            var produtoInativado = await _produtoService.Alterar(produto);
+            if (produtoInativado == null)
+            {
+                return BadRequest("Ocorreu um erro ao inativar o produto!");
+            }
+            return Ok("Produto Inativado com Sucesso!");
+        }
     }
 }
