@@ -14,6 +14,7 @@ namespace umami.Domain.Entities
         public bool STATUS { get; private set; }
         public int SEQUSUARIO { get; private set; }
         public USUARIO USUARIO { get; set; }
+        public ICollection<ITENSVENDA> ITENSVENDA { get; set; }
         protected VENDA() { }
         public VENDA(int id, DateTime dataVenda, bool status, int seqUsuario)
         {

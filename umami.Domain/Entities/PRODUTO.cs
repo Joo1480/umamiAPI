@@ -14,6 +14,7 @@ namespace umami.Domain.Entities
         public string? DESCRICAO { get; private set; }
         public decimal? VALOR_VENDA { get; private set; }
         public bool STATUS {  get; private set; }
+        public ICollection<ITENSVENDA> ITENSVENDA { get; set; }
         protected PRODUTO() { }
         public PRODUTO(int id, string nome,  string descricao, decimal valorVenda, bool status)
         {
