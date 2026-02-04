@@ -50,5 +50,10 @@ namespace umami.Infra.Data.Repositories
             var query = _context.PRODUTO.AsQueryable();
             return await PaginationHelper.CreateAsync(query, pageNumber, pageSize);
         }
+        public async Task<decimal> ObterValorProduto(int seqProduto)
+        {
+            return await _context.PRODUTO.Where(p => p.ID == seqProduto && p.STATUS).Select(p => p.VALOR_VENDA).SingleAsync();
+
+        }
     }
 }

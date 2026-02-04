@@ -58,13 +58,14 @@ namespace umami.Infra.Ioc
             services.AddScoped<ITipoUsuarioRepository, TipoUsuarioRepository>();
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
             services.AddScoped<IProdutoRepository, ProdutoRepository>();
+            services.AddScoped<IVendaRepository, VendaRepository>();
 
             //Services
             services.AddScoped<ITipoUsuarioService, TipoUsuarioService>();
             services.AddScoped<IUsuarioService, UsuarioService>();
             services.AddScoped<IAuthenticate, AuthenticateService>();
             services.AddScoped<IProdutoService, ProdutoService>();
-
+            services.AddScoped<IVendaService, VendaService>();
 
             return services;
         }

@@ -26,6 +26,12 @@ namespace umami.Domain.Entities
             SEQPRODUTO = seqproduto;
             SEQVENDA = seqvenda;
         }
+        public ITENSVENDA(int quant, decimal valor, int seqproduto)
+        {
+            QUANT = quant;
+            VALOR = valor * quant;
+            SEQPRODUTO = seqproduto;
+        }
         public ITENSVENDA(int quant, decimal valor, int seqproduto, int seqvenda)
         {
             ValidateDomain(quant,  valor, seqproduto, seqvenda);

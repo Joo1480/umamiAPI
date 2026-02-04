@@ -15,5 +15,6 @@ namespace umami.Infra.Data.Repositories
         Task<PRODUTO> Excluir(int id);
         Task<PRODUTO> SelecionarAsync(int id);
         Task<PagedList<PRODUTO>> SelecionarTodosAsync(int pageNumber, int pageSize);
+        public Task<decimal> ObterValorProduto(int seqProduto);
     }
 }

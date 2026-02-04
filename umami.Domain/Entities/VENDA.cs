@@ -14,7 +14,12 @@ namespace umami.Domain.Entities
         public bool STATUS { get; private set; }
         public int SEQUSUARIO { get; private set; }
         public USUARIO USUARIO { get; set; }
-        public ICollection<ITENSVENDA> ITENSVENDA { get; set; }
+        public ICollection<ITENSVENDA> ITENSVENDA { get; } = new List<ITENSVENDA>();
+
+        public void AdicionarItem(int quant, decimal valor, int seqProduto)
+        {
+            ITENSVENDA.Add(new ITENSVENDA(quant, valor, seqProduto));
+        }
         protected VENDA() { }
         public VENDA(int id, DateTime dataVenda, bool status, int seqUsuario)
         {
@@ -35,5 +40,6 @@ namespace umami.Domain.Entities
             STATUS = status;
             SEQUSUARIO = seqUsuario;
         }
+
     }
 }
