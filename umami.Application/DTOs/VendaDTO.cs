@@ -11,6 +11,7 @@ namespace umami.Application.DTOs
     {
         [JsonIgnore]
         public DateTime DATA_VENDA { get; set; }
+        [JsonIgnore]
         public bool STATUS { get; set; }
         [JsonIgnore]
         public int SEQUSUARIO { get; set; }

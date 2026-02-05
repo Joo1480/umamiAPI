@@ -10,5 +10,6 @@ namespace umami.Application.Interfaces
     public interface IVendaService
     {
         Task<int> Incluir(VendaDTO model);
+        Task<bool> VerificaVendaAberto(int seqUsuario);
     }
 }

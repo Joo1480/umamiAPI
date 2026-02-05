@@ -18,12 +18,18 @@ namespace umami.API.Controllers
             _vendaService = vendaService;
             _produtoService = produtoService;
         }
-        [HttpPost]
+        [HttpPost("novaVenda")]
         public async Task<IActionResult> Criar([FromBody] VendaDTO model)
         {
             if (model == null || model.Itens == null || !model.Itens.Any())
                 return BadRequest("A venda deve conter ao menos um item.");
 
+            //var vendaEmAberto = await _vendaService.VerificaVendaAberto(User.Getid());
+            var vendaEmAberto = await _vendaService.VerificaVendaAberto(1);
+            if (vendaEmAberto)
+            {
+                return BadRequest("Possui venda em aberto, finalize ela antes de incluir uma nova!");
+            }
             model.STATUS = false;
             //model.SEQUSUARIO = User.Getid();
             model.SEQUSUARIO = 1;

@@ -23,6 +23,10 @@ namespace umami.Infra.Data.Repositories
             await _context.SaveChangesAsync();
             return model;
         }
+        public async Task<bool> VerificaVendaAberto(int seqUsuario)
+        {
+            return await _context.VENDA.Where(x => !x.STATUS && x.SEQUSUARIO == seqUsuario).AnyAsync();
+        }
     }
 }
 

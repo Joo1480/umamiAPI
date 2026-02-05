@@ -36,5 +36,9 @@ namespace umami.Application.Services
             // 4️⃣ Retorna o ID gerado
             return venda.ID;
         }
+        public async Task<bool> VerificaVendaAberto(int seqUsuario)
+        {
+            return await _vendaRepository.VerificaVendaAberto(seqUsuario);
+        }
     }
 }

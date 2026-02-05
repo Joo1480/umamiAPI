@@ -9,6 +9,7 @@ namespace umami.Domain.Interfaces
 {
     public interface IVendaRepository
     {
-        public Task<VENDA> Incluir(VENDA model);
+        Task<VENDA> Incluir(VENDA model);
+        Task<bool> VerificaVendaAberto(int seqUsuario);
     }
 }
