@@ -15,7 +15,8 @@ namespace umami.Infra.Data.Context
         public DbSet<USUARIO> USUARIO {  get; set; }
         public DbSet<PRODUTO> PRODUTO {  get; set; }
         public DbSet<VENDA> VENDA {  get; set; }
-
+        public DbSet<ITENSVENDA> ITENSVENDA {  get; set; }
+        public DbSet<TIPOPAGAMENTO> TIPOPAGAMENTO {  get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

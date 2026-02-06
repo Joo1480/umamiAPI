@@ -15,7 +15,7 @@ namespace umami.Infra.Data.EntitiesConfiguration
         {
             builder.HasKey(x => x.ID);
             builder.Property(x => x.QUANT).IsRequired();
-            builder.Property(x => x.VALOR).IsRequired();
+            builder.Property(x => x.VALOR).IsRequired().HasPrecision(18, 4);
             builder.Property(x => x.SEQPRODUTO).IsRequired();
             builder.Property(x => x.SEQVENDA).IsRequired();
 
