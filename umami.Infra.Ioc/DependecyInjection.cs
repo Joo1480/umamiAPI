@@ -59,6 +59,7 @@ namespace umami.Infra.Ioc
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
             services.AddScoped<IProdutoRepository, ProdutoRepository>();
             services.AddScoped<IVendaRepository, VendaRepository>();
+            services.AddScoped<ITipoPagamentoRepository, TipoPagamentoRepository>();
 
             //Services
             services.AddScoped<ITipoUsuarioService, TipoUsuarioService>();
@@ -66,7 +67,7 @@ namespace umami.Infra.Ioc
             services.AddScoped<IAuthenticate, AuthenticateService>();
             services.AddScoped<IProdutoService, ProdutoService>();
             services.AddScoped<IVendaService, VendaService>();
-
+            services.AddScoped<ITipoPagamentoService, TipoPagamentoService>();
             return services;
         }
 

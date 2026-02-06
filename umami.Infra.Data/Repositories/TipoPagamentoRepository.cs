@@ -12,43 +12,43 @@ using umami.Infra.Data.Helpers;
 
 namespace umami.Infra.Data.Repositories
 {
-    public class TipoUsuarioRepository : ITipoUsuarioRepository
+    public class TipoPagamentoRepository : ITipoPagamentoRepository
     {
         private readonly ApplicationDbContext _context;
-        public TipoUsuarioRepository(ApplicationDbContext context)
+        public TipoPagamentoRepository(ApplicationDbContext context)
         {
             _context = context;
         }
-        public async Task<TIPOUSUARIO> Incluir(TIPOUSUARIO model)
+        public async Task<TIPOPAGAMENTO> Incluir(TIPOPAGAMENTO model)
         {
-            _context.TIPOUSUARIO.Add(model);
+            _context.TIPOPAGAMENTO.Add(model);
             await _context.SaveChangesAsync();
             return model;
         }
-        public async Task<TIPOUSUARIO> Alterar(TIPOUSUARIO model)
+        public async Task<TIPOPAGAMENTO> Alterar(TIPOPAGAMENTO model)
         {
-            _context.TIPOUSUARIO.Update(model);
+            _context.TIPOPAGAMENTO.Update(model);
             await _context.SaveChangesAsync();
             return model;
         }
-        public async Task<TIPOUSUARIO> Excluir(int id)
+        public async Task<TIPOPAGAMENTO> Excluir(int id)
         {
-            var tipo = await _context.TIPOUSUARIO.FindAsync(id);
+            var tipo = await _context.TIPOPAGAMENTO.FindAsync(id);
             if (tipo != null)
             {
-                _context.TIPOUSUARIO.Remove(tipo);
+                _context.TIPOPAGAMENTO.Remove(tipo);
                 await _context.SaveChangesAsync();
                 return tipo;
             }
             return null;
         }
-        public async Task<TIPOUSUARIO> SelecionarAsync(int id)
+        public async Task<TIPOPAGAMENTO> SelecionarAsync(int id)
         {
-            return await _context.TIPOUSUARIO.AsNoTracking().FirstOrDefaultAsync(x => x.ID == id);
+            return await _context.TIPOPAGAMENTO.AsNoTracking().FirstOrDefaultAsync(x => x.ID == id);
         }
-        public async Task<PagedList<TIPOUSUARIO>> SelecionarTodosAsync(int pageNumber, int pageSize)
+        public async Task<PagedList<TIPOPAGAMENTO>> SelecionarTodosAsync(int pageNumber, int pageSize)
         {
-            var query = _context.TIPOUSUARIO.AsQueryable();
+            var query = _context.TIPOPAGAMENTO.AsQueryable();
             return await PaginationHelper.CreateAsync(query, pageNumber, pageSize);
         }
     }
