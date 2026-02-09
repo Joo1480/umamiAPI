@@ -12,11 +12,9 @@ namespace umami.API.Controllers
     public class VendaController : Controller
     {
         private readonly IVendaService _vendaService;
-        private readonly IProdutoService _produtoService;
-        public VendaController(IVendaService vendaService, IProdutoService produtoService)
+        public VendaController(IVendaService vendaService)
         {
             _vendaService = vendaService;
-            _produtoService = produtoService;
         }
         [HttpPost("novaVenda")]
         public async Task<IActionResult> Criar([FromBody] VendaDTO model)

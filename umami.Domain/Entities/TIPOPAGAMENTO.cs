@@ -11,6 +11,7 @@ namespace umami.Domain.Entities
     {
         public int ID { get; private set; }
         public string? DESCRICAO { get; private set; }
+        public ICollection<PAGAMENTO> PAGAMENTO { get; set; }
         protected TIPOPAGAMENTO() { }
         public TIPOPAGAMENTO(int id, string descricao)
         {

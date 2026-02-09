@@ -15,7 +15,7 @@ namespace umami.Domain.Entities
         public int SEQUSUARIO { get; private set; }
         public USUARIO USUARIO { get; set; }
         public ICollection<ITENSVENDA> ITENSVENDA { get; } = new List<ITENSVENDA>();
-
+        public ICollection<PAGAMENTO> PAGAMENTO { get; set; }
         public void AdicionarItem(int quant, decimal valor, int seqProduto)
         {
             ITENSVENDA.Add(new ITENSVENDA(quant, valor, seqProduto));

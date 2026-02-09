@@ -19,7 +19,6 @@ namespace umami.Application.Mappings
             CreateMap<USUARIO, UsuarioPostDTO>().ReverseMap();
             CreateMap<PRODUTO, ProdutoDTO>().ReverseMap();
             CreateMap<TIPOPAGAMENTO, TipoPagamentoDTO>().ReverseMap();
-
         }
     }
 }
